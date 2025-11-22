@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, Button, StatusBar, StyleSheet, SectionList, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, View, Text, Button, StatusBar, StyleSheet, SectionList, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import * as Font from 'expo-font';
 
 export default function App() {
@@ -124,26 +124,31 @@ export default function App() {
 
 
     return (
-        <ScrollView style={styles.parent} contentContainerStyle={{ paddingBottom: 40 }}>
-            <View style={styles.buttonWrapper}>
-                <Button title="Add Piece" onPress={() => { }} />
-            </View>
+        <ImageBackground
+            source={{ uri: "https://www.moma.org/media/W1siZiIsIjQ1MDE0MCJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MTQ0MFx1MDAzZSJdXQ.jpg?sha=a3a977dd6edaa34a" }}
+            style={styles.backgroundImage}
+            resizeMode="cover"
 
-            <View style={styles.titleBox}>
-                <Text style={styles.titleText}>My Fashion Wardrobe</Text>
-            </View>
+        >
+            <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
 
-            <SectionList
-                sections={fashionSections}
-                keyExtractor={(item, index) => item.name + index}
-                renderItem={renderItem}
-                renderSectionHeader={renderSectionHeader}
-                contentContainerStyle={styles.sectionListWrapper}
-            />
+                <View style={styles.titleBox}>
+                    <Text style={styles.titleText}>My Fashion Wardrobe</Text>
+                </View>
 
-            <StatusBar style="auto" />
-        </ScrollView>
+                <SectionList
+                    sections={fashionSections}
+                    keyExtractor={(item, index) => item.name + index}
+                    renderItem={renderItem}
+                    renderSectionHeader={renderSectionHeader}
+                    contentContainerStyle={styles.sectionListWrapper}
+                />
+
+                <StatusBar style="auto" />
+            </ScrollView>
+        </ImageBackground>
     );
+
 }
 
 
@@ -160,7 +165,6 @@ const styles = StyleSheet.create({
     },
 
     titleBox: {
-        backgroundColor: 'white',
         paddingVertical: 12,
         marginHorizontal: 20,
         borderRadius: 8,
@@ -171,6 +175,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 55,
         fontFamily: 'MiltonOne',
+        color: 'white',
     },
 
     sectionListWrapper: {
@@ -193,7 +198,7 @@ const styles = StyleSheet.create({
     },
 
     cardItem: {
-        backgroundColor: '#F2F2F2',
+        backgroundColor: 'rgba(242,242,242,0.5)',
         padding: 15,
         borderRadius: 12,
         marginBottom: 15,
@@ -234,6 +239,14 @@ const styles = StyleSheet.create({
         color: '#333',
         marginTop: 3,
     },
+
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+    },
+
+
 
 
 });
